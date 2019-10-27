@@ -1,0 +1,454 @@
+/*..........................Global Settings..............*/
+*{
+    font-family: 'Titillium Web', sans-serif;
+    scroll-behavior: smooth;
+}
+:root{
+    --title-bg: radial-gradient(circle,  rgb(250, 53, 53), rgb(155, 152, 152));
+    --title-bg-animate: 10s linear infinite title-bg-animate alternate;
+
+    
+}
+.title_bg_radial{
+    background: var(--title-bg);
+    animation: var(--title-bg-animate);
+}
+@keyframes title-bg-animate{
+    0%{
+        background-position: left top;
+        background-size: 30% 100%;
+    }
+    100%{
+        background-position: right top;
+        background-size: 30% 100%;
+
+    }
+}
+body{
+    margin: 0px;
+    padding: 0px;
+    overflow-x: hidden;
+}
+
+/*......For Preloader........*/
+.preloader{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background: #333;
+    z-index: 99999999999999999;
+}
+.preloader::before, .preloader::after{
+    content: '';
+    background: #444;
+    width: 90vw;
+    height: 10vh;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: 2s linear infinite animate-body;
+  }
+  .preloader ::after{
+    animation-delay: 1.3s;
+  }
+  @keyframes animate-body {
+    0%{
+      transform: translateX(-50%);
+      opacity: 1;
+    }
+    50%{
+      opacity: 0;
+    }
+    100%{
+      transform: translate(-50%, 100vh);
+      opacity: 1;
+    }
+  }
+  .preloader.completed{
+      pointer-events: none;
+      animation: 1s linear precompleted forwards;
+  }
+  @keyframes precompleted{
+      0%{
+          opacity: 1;
+      }
+      100%{
+          opacity: 0;
+      }
+  }
+  .preloader .loader{
+    width: 60px;
+    height: 60px;
+    border-radius: 100%;
+    animation: 1s linear
+      infinite animate;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 333;
+  }
+  @keyframes animate{
+    0%{
+     box-shadow: 0px 0px 20px 20px inset white;
+    }
+    100%{
+     
+       box-shadow: 0px 0px 0px 0px inset red;
+    }
+    
+  }
+/*......For Preloader End......*/
+
+/*..............................Header Start..................*/
+
+
+
+header{
+    width: 100%;
+    position: relative;
+}
+                        /*.....Menu of header.........*/
+menu{
+    width: 100%;
+    z-index: 50;
+}
+menu .inner_log_sign{
+    overflow: hidden;
+}
+menu .inner_log_sign marquee {
+    width: calc(100% - 150px);
+    line-height: 46px;
+    position: relative;
+}
+
+menu .log_sign_top{
+    width: 150px;
+    border: 2px solid white;
+    border-right-color: transparent;
+    border-radius: 0px 10px 10px 0px;
+    display: inline-block;
+}
+                        /*....First Navbar.....*/
+.nav_trp{
+    background: rgba(255, 255, 255,.7);
+}
+    
+.logo{
+    width: 180px;
+    height: 80px;
+}
+/*...........................Larg Navbar With Mobile Responsive...........*/
+nav{
+    position: relative;
+}
+.nav_lg_ready{
+    list-style: none;
+    /* background: radial-gradient(black, transparent); */
+}
+/* .m_line_height{
+    line-height: 80px;
+} */
+.nav_anchor_item{
+    display: flex!important;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+@media screen and (max-width: 450px){
+    .sm_block_400{
+        display: block !important;
+        width: 50%;
+
+    }
+    
+}
+
+
+/*..................................Navbar Dropdown......................*/
+.nav_dropdown{
+    position: relative;
+    overflow: hidden;
+
+}
+.nav_dropdown_menu{
+    position: absolute;
+    width: 300px;
+    background: repeating-radial-gradient(  rgba(250, 53, 53, .8), rgba(155, 152, 152, .8));
+    animation: 10s linear infinite radial_nav_bg alternate-reverse;
+    list-style: none;
+    /* opacity: 0;
+    visibility: hidden;
+    transition: .5s;
+    transform: translateY(20px) scale(0) rotateZ(15deg);
+    transform-origin: right top; */
+
+}
+.nav_dropdown_menu li,
+.nav_dropdown_menu li a{
+    transition: .5s;
+}
+.nav_dropdown_menu li:hover{
+    background: white;
+
+}
+.nav_dropdown_menu li a:hover{
+    margin-left: 15px!important;
+    color: black!important;
+
+}
+.nav_dropdown:hover .nav_dropdown_menu{
+    opacity: 1;
+    visibility: visible;
+    transform: translate(0px) scale(1) rotateZ(0deg);
+}
+                            /*.........Navbar check For Mobile..........*/
+label[for="nav_bar_check"]{
+    position: absolute;
+    right: 5%;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+    z-index: 100;
+}  
+label[for="nav_bar_check"] span{
+    display: block;
+    width: 100%;
+    height: 5px;
+    margin-bottom: 8px;
+    background: white;
+    transition: .5s;
+    transform-origin: left;
+
+}
+input[id='nav_bar_check']{
+    display: none;
+}
+input[id='nav_bar_check']:checked ~ label[for="nav_bar_check"] #bar_line2{
+    transform: translateX(100px);
+    opacity: 0;
+}
+input[id='nav_bar_check']:checked ~ label[for="nav_bar_check"] #bar_line1{
+    transform: rotate(45deg);
+}
+input[id='nav_bar_check']:checked ~ label[for="nav_bar_check"] #bar_line3{
+    transform: rotate(-45deg);
+}
+@media screen and (min-width: 700px){
+    label[for="nav_bar_check"]{
+        display: none!important;
+    }
+}
+@media screen and (max-width: 700px) {
+    .logo{
+        width: 120px!important;
+        height: 50px!important;
+    }
+    .logo h1{
+        font-size: 25px;
+    }
+.navbar_list{
+    justify-content: space-between!important;
+}    
+.nav_lg_ready{
+    opacity: 0;
+    transform: scale(0);
+    visibility: hidden;
+    transition: .5s;
+    position: fixed;
+    display: block!important;
+    background: rgba(255, 0, 0,.5);
+    width: 100vw;
+    height: 100vh;
+    top: 0px;
+    left: 0px;
+    overflow: auto;
+}                      
+input[id='nav_bar_check']:checked ~ .nav_lg_ready{
+    opacity: 1;
+    transform: scale(1);
+    visibility: visible;
+}
+/* .sm_block_400 a.m_line_height{
+    line-height: 15px!important;
+    display: none!important;
+}                            */
+ul.nav_dropdown_menu{
+    opacity: 1!important;
+    visibility: visible!important;
+    position: static;
+    background: transparent;
+    box-shadow: 0 0 20px 2px black inset;
+    margin-left: 15px;
+    width: 100vw;
+}
+.nav_anchor_item{
+    justify-content: flex-start;
+    background: black;
+    padding: 5px;
+    
+}
+
+}
+/*.............................Header End.....................*/
+.form_section{
+    margin: 20px 0px;
+}
+form{
+    max-width: 400px;
+    height: 600px;    
+    box-shadow: 0 0 2px black;
+    margin: 0px auto;
+    position: relative;
+}
+form::after{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0 ;
+    width: 150px;
+    height: 150px;
+    background: rgb(255, 0, 0,.2);
+    z-index: -2;
+    border-bottom-right-radius: 100%;
+}
+.form_header{
+    text-align: center;
+}
+.form_header .form_title{
+    padding: 18px;
+    font-size: 22px;
+    margin-bottom: 50px;
+}
+.form_container {
+    width: 80%;
+    margin: 0px auto;
+    padding: 20px;
+    box-shadow: 0 0 2px black;
+    border-radius: 8px;
+    background: white;
+
+}
+.form_container [class*="item"] #inputfield{
+    width: 100%;
+    padding: 12px 45px;
+    margin: 4px 0px;
+    outline: none;
+    border: none;
+    box-shadow: 0 0 1px black;
+   
+}
+.form_container [class*="item"] #inputfield[type="text"]{
+
+    background: url('https://img.icons8.com/officel/16/000000/user.png')
+    no-repeat left top / 35px 35px;
+}
+.form_container [class*="item"] #inputfield[type="password"]{
+
+    background: url('https://img.icons8.com/cute-clipart/64/000000/forgot-password.png')
+    no-repeat left top / 35px 35px;
+}
+.form_container .item3 {
+    padding: 7px;
+    box-shadow: 0px 0px 2px black;
+    display: inline-block;
+    margin: 5px 0px;
+    cursor: pointer;
+}
+.form_container .item3 label{
+    cursor: pointer;
+}
+.form_container .item4{
+    text-align: center;
+}
+.form_container .item4 input{
+    background: none;
+    padding: 8px 35px;
+    font-size: 18px;
+    margin-top: 15px;
+    cursor: pointer;
+    outline: none;
+    box-shadow: 0px 0px 2px black;
+    border: none;
+    width: 100%;
+    display: block;
+}
+.form_container .item5{
+    display: flex;
+    justify-content: space-between;
+    margin: 15px 0px;
+}
+.form_container .item5 .new_account a{
+    display: inline-block;
+    padding: 18px 15px;
+    color: black;
+    text-decoration: none;
+    box-shadow: 0px 0px 2px black;
+    border-radius: 4px;
+
+
+}
+.form_container .item5 .condition a{
+    padding: 5px 15px;
+    box-shadow: 0 0 2px black;
+    color: black;
+    display: inline-block;
+    margin: 5px 0px;
+    font-size: 13px;
+    text-decoration: none;
+    border-radius: 4px;
+
+}
+
+
+/*........................Footer .....................*/
+footer{
+    min-height: 500px;
+}
+
+.footer_inner .footer_content{
+    width: 250px!important;
+    height: 450px;
+    flex-grow: 3;
+    position: relative;
+    overflow:hidden;
+}
+.footer_inner .footer_content:last-child{
+    height: auto;
+    align-self: flex-end;
+}
+                        /*...Footer contetn map....*/
+.footer_content_map{
+    position: relative;
+    overflow: hidden;
+}                     
+.footer_content_map h4{
+    position :absolute;
+    top: 15%;
+    left: 15px;
+    right: 15px;
+    bottom: 15%;
+    background: rgba(19, 54, 111,.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border-radius: 10px;
+    transition: .5s;
+}
+.footer_content_map:hover h4{
+    transform: scale(10);
+    opacity: 0;
+    pointer-events: none;
+}                  
+                    /*................Footer Top Pages...........*/
+.top_pages_group{
+    height: calc(450px - 50px);
+    overflow: auto;
+}                    
